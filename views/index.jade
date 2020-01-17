@@ -1,0 +1,10 @@
+extends layout
+
+block content
+  h1= title
+  p Welcome to #{title}
+  input(type='button',id='_rBtn', value='Generate Notes')
+  input(type='button',id='_checkBtn', value='Check Answer')
+
+  div(id='_displayNotes')
+  div(id='_displayAnswer', hidden)
