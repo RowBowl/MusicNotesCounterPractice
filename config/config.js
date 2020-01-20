@@ -16,4 +16,4 @@ var cNotes = ScaleBuilder.generateChromatic(alphabet);
 //calculate the # number of seminotes between the notes
 
 
- module.exports = {allNotes:cNotes};
+ module.exports = {allNotes:cNotes, direction:"cw"};

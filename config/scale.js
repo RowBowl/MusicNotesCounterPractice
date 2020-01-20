@@ -6,11 +6,10 @@ class ScaleBuilder{
         var chromatic = [], chromaticNotes=[];
 
 
-        alphabet.split(',').forEach(function(letter){
+        alphabet.split(',').forEach(function(letter, index,arr){
             chromatic.push(letter);
-
             if(letter !== "B" && letter !== "E"){
-                chromatic.push(letter + '#' + letter + 'b');
+                chromatic.push(letter + '#' + arr[(index+1)%7] + 'b');
             }
         });
         chromatic.forEach(function(note){

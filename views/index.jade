@@ -2,9 +2,9 @@ extends layout
 
 block content
   h1= title
-  p Welcome to #{title}
-  input(type='button',id='_rBtn', value='Generate Notes')
-  input(type='button',id='_checkBtn', value='Check Answer')
-
+  p Generate the notes from the chromatic scale, and guess how many half-notes are between them
+  input(type='button',id='_rBtn', value='Generate Notes') 
   div(id='_displayNotes')
-  div(id='_displayAnswer', hidden)
+  div(id='_usrAnswerButtons', hidden)
+  .alert.alert-danger(id='_errorText', role = "alert", hidden)
+  div(id='_displayAnswer')

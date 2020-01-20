@@ -1,46 +1,44 @@
 
-const btn = document.getElementById('_rBtn'),
-      answerBtn = document.getElementById('_checkBtn');
+var btn = document.getElementById('_rBtn'),
+      errorText = document.getElementById('_errorText');
+
+var correctAnswer = "", status ="";
+
 
 btn.addEventListener('click', function(e){
-    console.log('button clicked');
+    console.log('Generating Notes!');
+    status = "Notes Generated";
+    errorText.setAttribute('hidden', "");
+    document.getElementById('_displayAnswer').innerHTML = "";
+    document.getElementById('_usrAnswerButtons').removeAttribute('hidden');
+    enableAnswers();
 
     fetch('/notes', {method:'POST'})
     .then(function(response){
-        if(response.ok){
-            console.log('notes produced');
-            return response.json();
-        }
-        throw new Error('Fetching Notes failed');
+        return validateResponse(response);
     })
     .then(function(data) {
-        console.log(data);
+        correctAnswer = data.numOfSeminotes;
 
-        let note1 = data.pair[0],
-            note2 = data.pair[1];
-        let answer = data.numOfSeminotes;
-        let displayNotes = document.getElementById('_displayNotes'),
-            displayAnswer = document.getElementById('_displayAnswer');
-
-        displayNotes.innerHTML = `<p>${note1.note}</p>`;
-        displayNotes.innerHTML += `<p>${note2.note}</p>`;
-        displayAnswer.innerHTML = `<p>${answer}</p>`;
-
-        if(displayAnswer.hasAttribute("hidden") !== true){
-            displayAnswer.setAttribute("hidden","");
-        }
-        //console.log(data);
+        processData(data);
     })
     .catch(function(error){
         console.log(error);
     });
 });
 
-answerBtn.addEventListener('click', function(e){
+/*answerBtn.addEventListener('click', function(e){
     console.log('fetch answer');
-    let answer = document.getElementById('_displayAnswer');
-    answer.removeAttribute("hidden");
-});
+    let usrAnswer = "2";
+    let parsed = parseInt(usrAnswer.value);
+    if(parsed && parsed > 0 && parsed < 13){
+        document.getElementById('_displayAnswer').removeAttribute("hidden");
+        validateAnswer(parsed, correctAnswer);
+    } else{
+        sendError("Please enter a valid value: number ranging from 1 to 12.");
+    }
+
+});*/
 
 
 //configData.allNotes.forEach(x => document.getElementById('_displayNotes').innerHTML += x);
