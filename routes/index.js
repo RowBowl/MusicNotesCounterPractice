@@ -6,7 +6,8 @@ var router = express.Router();
 //console.log(Config.allNotes);
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Half Note Practice Tool' });
+  res.render('index', { title: 'Half Note Practice Tool',
+   title2: 'How many notes are between the following notes from the chromatic scale?'});
 });
 
 router.post('/notes', (req, res) => {

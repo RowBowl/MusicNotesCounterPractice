@@ -1,10 +1,42 @@
 extends layout
 
 block content
-  h1= title
-  p Generate the notes from the chromatic scale, and guess how many half-notes are between them
-  input(type='button',id='_rBtn', value='Generate Notes') 
-  div(id='_displayNotes')
-  div(id='_usrAnswerButtons', hidden)
-  .alert.alert-danger(id='_errorText', role = "alert", hidden)
-  div(id='_displayAnswer')
+    .container-fluid.notes_top
+      .card.text-white.mb-3.shadow-lg(style='background-color:#122E4A;')
+        .card-body
+            .container-flud
+                .row
+                    .col
+                        h2(class="card-title")=title
+                .row
+                    .col
+                        h5(class="card-title")=title2
+                .row
+                    .col.text-center
+                        div(id='_displayNotes' class='text-center font-weight-bold display-2')
+                .row.mb-2
+                    .col.text-right
+                        input(type="button",class="btn btn-light",id='_rBtn', value='Generate Notes') 
+                .row
+                    .col.text-center
+                        .btn-group.special(id="_usrAnswerButtons", role="group", aria-label="Semitones Group", hidden)
+                            
+                .alert.alert-danger(id='_errorText', role = "alert", hidden)
+    .container-fluid.notes_bottom
+        .card.text-white.mb-3.shadow-lg(style='background-color:#122E4A;')
+            .card-body
+                nav
+                    .nav.nav-tabs(id="_nav-tab", role="tablist")
+                        a(class="nav-item nav-link active" id="_listview-tab" data-toggle="tab" 
+                        href="#_list" role="tab" aria-controls="_list" aria-selected="true") Activity List
+                        a(class="nav-item nav-link" id="_circleview-tab" data-toggle="tab" 
+                        href="#_circle" role="tab" aria-controls="_circle" aria-selected="false") Circle View
+
+                .tab-content(id="_tabContent")
+                    .tab-pane.fade.show.active.container-fluid(id="_list", role="tabpanel" aria-labelledby="_listview-tab")
+                        .listContents.row
+                            .list-group.col(id="_listContents")
+                            .col
+                    .tab-pane.fade(id="_circle", role="tabpanel" aria-labelledby="_circleview-tab")
+                        .container
+                            .circleContent(id="_circleContents")

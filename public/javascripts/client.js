@@ -1,6 +1,5 @@
 
-var btn = document.getElementById('_rBtn'),
-      errorText = document.getElementById('_errorText');
+var btn = document.getElementById('_rBtn');
 
 var correctAnswer = "", status ="";
 
@@ -8,8 +7,6 @@ var correctAnswer = "", status ="";
 btn.addEventListener('click', function(e){
     console.log('Generating Notes!');
     status = "Notes Generated";
-    errorText.setAttribute('hidden', "");
-    document.getElementById('_displayAnswer').innerHTML = "";
     document.getElementById('_usrAnswerButtons').removeAttribute('hidden');
     enableAnswers();
 

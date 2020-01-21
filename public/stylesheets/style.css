@@ -1,8 +1,22 @@
+:root{
+    --bg_color : #364B61;
+    --section_color : #122E4A;
+}
+
 body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background-color: var(--bg_color);
 }
 
 a {
-  color: #00B7FF;
+  color: white;
+}
+
+.btn-group.special {
+  display: flex;
+}
+
+.special .btn {
+  flex: 1
 }

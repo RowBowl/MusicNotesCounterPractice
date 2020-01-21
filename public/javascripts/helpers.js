@@ -1,8 +1,8 @@
 
 function processData(data){
     let notes = data.pair;
-    for(var i = 0; i < 2; i++){
-        console.log(notes[i].hasAccidental + "  :  " + notes[i].note.substring(0,2))
+    for(let i = 0; i < 2; i++){
+        //console.log(notes[i].hasAccidental + "  :  " + notes[i].note.substring(0,2))
         if(Math.round(Math.random() * 1)){
             notes[i].note = notes[i].hasAccidental ? notes[i].note.slice(2) : notes[i].note;
         } else{
@@ -12,8 +12,14 @@ function processData(data){
 
     let answer = data.numOfSeminotes;
     let displayNotes = document.getElementById('_displayNotes');
-    displayNotes.innerHTML = `<p>${notes[0].note}</p>`;
-    displayNotes.innerHTML += `<p>${notes[1].note}</p>`;
+    genFirst = notes[0].note;
+    genSecond = notes[1].note;
+    displayNotes.innerHTML = `<ul class="list-inline">
+                                  <li class="list-inline-item">${notes[0].note}</li>
+                                  <li class="list-inline-item">${notes[1].note}</li>
+                              </ul>`;
+    $('[data-toggle="popover"]').popover('hide');
+
 }
 
 function validateResponse(response){
@@ -24,38 +30,37 @@ function validateResponse(response){
     throw new Error('Fetching Notes failed');
 }
 
-function sendError(e, wrongValue){
-    //let error = document.getElementById('_errorText')
-    //let usrAnswer = document.getElementById('_usrAnswer');
-    
-    errorText.removeAttribute("hidden");
-    errorText.innerHTML = e;
-    colorBorder(document.getElementById(`_usrAnswer${wrongValue}`), "red");
-    return;
-}
-
-function validateAnswer(usrValue, corrValue){
-    errorText.setAttribute('hidden', "");
-    colorBorder(document.getElementById(`_usrAnswer${corrValue}`), "green");
-    if(usrValue === corrValue){
-        document.getElementById('_displayAnswer').innerHTML = `<p>Correct!</p>`;
-    } else{
-        sendError("Wrong Answer!", usrValue);
-    }
-    disableAnswers();
-}
-
 function answerBtnClick(element) {
+    var aList = new ActivityList();
     console.log('fetch answer');
     status = "Answer Clicked";
-    let parsed = parseInt(element.value);
+    let parsed = parseInt(element.value), displayContent='';
+    colorElement(document.getElementById(`_usrAnswer${correctAnswer}`), "green");
+
     if(parsed && parsed > 0 && parsed < 13){
-        validateAnswer(parsed, correctAnswer);
+        if(parsed === correctAnswer){
+            displayContent = 'Correct!';
+        } else{
+            colorElement(document.getElementById(`_usrAnswer${parsed}`), "red");
+            displayContent = 'Incorrect!';
+        }
     }
+    disableAnswers();
+    aList.addItem(genFirst,genSecond, parsed, correctAnswer);
+
+    $('#_listContents').append(aList.getDisplay);
+
+    $(`button#${element.id}`).popover({
+        trigger: 'focus',
+        placement: 'bottom',
+        content: displayContent,
+        container: 'body'
+    });
+    $(`button#${element.id}`).popover("show");
 }
 
-function colorBorder(element, color){
-    element.style.borderColor=color;
+function colorElement(element, color){
+    element.style.backgroundColor=color;
 }
 
 function disableAnswers(){
@@ -69,16 +74,27 @@ function enableAnswers(){
     for(let i = 1; i < 12; i++){
         let element = document.getElementById(`_usrAnswer${i}`);
         element.removeAttribute("disabled");
-        element.style.borderColor = null;
+        element.style.backgroundColor = null;
+    }
+}
+function popperTitle(element){
+    if(parseInt(element) === correctAnswer){
+        return 'Correct!';
+    } else{
+        return 'Incorrect!';
     }
 }
 window.onload = function(){
-    let htmlString = "";
-    status = "Start";
+    let htmlString = "",
+    status = "Start",
+    genFirst = '', genSecond = '';
     for(let i = 1; i < 12; i++){
-        htmlString +=
-        `<input type='button' id='_usrAnswer${i}' value="${i}" onclick=answerBtnClick(this)>`;
+        htmlString += `<button tabindex="0" id='_usrAnswer${i}' type="button" value="${i}"
+                        class="btn btn-light"
+                        onclick=answerBtnClick(this) data-toggle="popover" data-trigger="focus">${i}</button>`
+        //`<input type='button' class="btn btn-light" id='_usrAnswer${i}' value="${i}" onclick=answerBtnClick(this)>`;
     }
     document.getElementById('_usrAnswerButtons').innerHTML = htmlString;
+
     return;
 }
