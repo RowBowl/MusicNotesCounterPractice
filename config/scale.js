@@ -9,11 +9,11 @@ class ScaleBuilder{
         alphabet.split(',').forEach(function(letter, index,arr){
             chromatic.push(letter);
             if(letter !== "B" && letter !== "E"){
-                chromatic.push(letter + '#' + arr[(index+1)%7] + 'b');
+                chromatic.push(letter + '♯' + arr[(index+1)%7] + '♭');
             }
         });
         chromatic.forEach(function(note){
-            if(note.endsWith('b')){
+            if(note.endsWith('♭')){
                 chromaticNotes.push(new Note(note, true));
             } else{
                 chromaticNotes.push(new Note(note, false));

@@ -84,17 +84,3 @@ function popperTitle(element){
         return 'Incorrect!';
     }
 }
-window.onload = function(){
-    let htmlString = "",
-    status = "Start",
-    genFirst = '', genSecond = '';
-    for(let i = 1; i < 12; i++){
-        htmlString += `<button tabindex="0" id='_usrAnswer${i}' type="button" value="${i}"
-                        class="btn btn-light"
-                        onclick=answerBtnClick(this) data-toggle="popover" data-trigger="focus">${i}</button>`
-        //`<input type='button' class="btn btn-light" id='_usrAnswer${i}' value="${i}" onclick=answerBtnClick(this)>`;
-    }
-    document.getElementById('_usrAnswerButtons').innerHTML = htmlString;
-
-    return;
-}

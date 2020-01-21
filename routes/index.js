@@ -7,7 +7,7 @@ var router = express.Router();
 /* GET home page. */
 router.get('/', function(req, res, next) {
   res.render('index', { title: 'Half Note Practice Tool',
-   title2: 'How many notes are between the following notes from the chromatic scale?'});
+   title2: 'How many half-notes/semitones are between the following notes from the chromatic scale?'});
 });
 
 router.post('/notes', (req, res) => {

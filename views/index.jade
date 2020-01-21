@@ -2,12 +2,13 @@ extends layout
 
 block content
     .container-fluid.notes_top
-      .card.text-white.mb-3.shadow-lg(style='background-color:#122E4A;')
+      .card.text-white.mb-3.shadow-lg
         .card-body
             .container-flud
                 .row
                     .col
                         h2(class="card-title")=title
+                        hr(class="titleHR")
                 .row
                     .col
                         h5(class="card-title")=title2
@@ -16,15 +17,13 @@ block content
                         div(id='_displayNotes' class='text-center font-weight-bold display-2')
                 .row.mb-2
                     .col.text-right
-                        input(type="button",class="btn btn-light",id='_rBtn', value='Generate Notes') 
+                        input(type="button",class="btn btn-light btn-gen",id='_rBtn', value='Generate Notes') 
                 .row
                     .col.text-center
-                        .btn-group.special(id="_usrAnswerButtons", role="group", aria-label="Semitones Group", hidden)
-                            
-                .alert.alert-danger(id='_errorText', role = "alert", hidden)
+                        .btn-group.special(id="_usrAnswerButtons", role="group", aria-label="Semitones Group")                            
     .container-fluid.notes_bottom
-        .card.text-white.mb-3.shadow-lg(style='background-color:#122E4A;')
-            .card-body
+        .card.text-white.mb-3.shadow-lg
+            .card-body.bottomCard
                 nav
                     .nav.nav-tabs(id="_nav-tab", role="tablist")
                         a(class="nav-item nav-link active" id="_listview-tab" data-toggle="tab" 
@@ -33,10 +32,12 @@ block content
                         href="#_circle" role="tab" aria-controls="_circle" aria-selected="false") Circle View
 
                 .tab-content(id="_tabContent")
-                    .tab-pane.fade.show.active.container-fluid(id="_list", role="tabpanel" aria-labelledby="_listview-tab")
-                        .listContents.row
-                            .list-group.col(id="_listContents")
-                            .col
+                    .tab-pane.fade.show.active(id="_list", role="tabpanel" aria-labelledby="_listview-tab")
+                        .listContents
+                            .list-group(id="_listContents")
                     .tab-pane.fade(id="_circle", role="tabpanel" aria-labelledby="_circleview-tab")
                         .container
                             .circleContent(id="_circleContents")
+    nav(class="navbar fixed-bottom navbar-light bg-dark")
+        span(class="text-muted") By Robel Beyene | Contact me: #[a(href="mailto:robeyene620@gmail.com") robeyene620@gmail.com]
+            

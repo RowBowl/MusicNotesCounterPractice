@@ -1,12 +1,28 @@
 :root{
-    --bg_color : #364B61;
-    --section_color : #122E4A;
+    --bg_color : #383548;
+    --section_color : #2F2933;
+    --button_color: #BF0D7F;
 }
 
 body {
-  padding: 50px;
+  padding: 30px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
   background-color: var(--bg_color);
+}
+.card{
+    background-color: var(--section_color);
+    color:white;
+}
+.bottomCard{
+    padding: 0px;
+}
+.list-group-item{
+    background-color: var(--bg_color);
+    color:white;
+}
+.btn{
+    background-color: var(--button_color);
+    color:white;
 }
 
 a {
@@ -18,5 +34,8 @@ a {
 }
 
 .special .btn {
-  flex: 1
+  flex: 1;
+}
+.titleHR{
+    border: .5px solid white;
 }

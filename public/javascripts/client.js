@@ -24,18 +24,32 @@ btn.addEventListener('click', function(e){
     });
 });
 
-/*answerBtn.addEventListener('click', function(e){
-    console.log('fetch answer');
-    let usrAnswer = "2";
-    let parsed = parseInt(usrAnswer.value);
-    if(parsed && parsed > 0 && parsed < 13){
-        document.getElementById('_displayAnswer').removeAttribute("hidden");
-        validateAnswer(parsed, correctAnswer);
-    } else{
-        sendError("Please enter a valid value: number ranging from 1 to 12.");
+window.onload = function(e){
+    console.log('Generating Notes!');
+
+    fetch('/notes', {method:'POST'})
+    .then(function(response){
+        return validateResponse(response);
+    })
+    .then(function(data) {
+        correctAnswer = data.numOfSeminotes;
+
+        processData(data);
+    })
+    .catch(function(error){
+        console.log(error);
+    });
+
+
+    let htmlString = "",
+    genFirst = '', genSecond = '';
+    for(let i = 1; i < 12; i++){
+        htmlString += `<button tabindex="0" id='_usrAnswer${i}' type="button" value="${i}"
+                        class="btn btn-light"
+                        onclick=answerBtnClick(this) data-toggle="popover" data-trigger="focus">${i}</button>`
+        //`<input type='button' class="btn btn-light" id='_usrAnswer${i}' value="${i}" onclick=answerBtnClick(this)>`;
     }
+    document.getElementById('_usrAnswerButtons').innerHTML = htmlString;
 
-});*/
-
-
-//configData.allNotes.forEach(x => document.getElementById('_displayNotes').innerHTML += x);
+    return;
+};
