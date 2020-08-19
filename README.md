@@ -1,4 +1,4 @@
-# Hexatone: Music Intervals Generate
+# Hexatone: Music Intervals Generator
 A simple practice tool for counting the number of semitones (half notes) between two given notes. Developed with Node.js and Express.
 
 <!-- Future plans: Showing notes in chromatic circle. Expand to provide more beginner music theory tools
