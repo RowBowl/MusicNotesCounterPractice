@@ -1,8 +1,18 @@
-# MusicNotesCounterPractice
-A simple practice tool for counting the number of semitones(half notes) between two given notes. Developed with Node.js and express.
+# Hexatone: Music Intervals Generate
+A simple practice tool for counting the number of semitones (half notes) between two given notes. Developed with Node.js and Express.
 
-Future plans: Showing notes in chromatic circle. Expand to provide more beginner music theory tools
-Short demo: https://youtu.be/YgstxuuK9Fw
+<!-- Future plans: Showing notes in chromatic circle. Expand to provide more beginner music theory tools
+Short demo: https://youtu.be/YgstxuuK9Fw -->
+
+## Demo
+Visit https://youtu.be/YgstxuuK9Fw to see a full demo video.
+
+<a href="https://youtu.be/YgstxuuK9Fw">
+
+![Hexatone GIF](readme_assets/hexatone.gif)
+
+</a>
+
 
 ## Usage
 
